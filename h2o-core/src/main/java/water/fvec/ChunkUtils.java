@@ -1,6 +1,5 @@
 package water.fvec;
 
-import java.util.ArrayList;
 
 /**
  * Simple helper class which publishes some package private methods as public
@@ -15,11 +14,10 @@ public class ChunkUtils {
     }
 
     public static Chunk[] getChunks(Frame fr, int cidx) {
-        Vec[] vecs = fr.vecs();
-        ArrayList<Chunk> chunk_list = new ArrayList<>();
-        for(Vec v : vecs){
-            chunk_list.add(v.chunkForChunkIdx(cidx));
+        Chunk[] chunks = new Chunk[fr.vecs().length];
+        for(int i=0; i<fr.vecs().length; i++){
+            chunks[i] = fr.vec(i).chunkForChunkIdx(cidx);
         }
-       return chunk_list.toArray(new Chunk[chunk_list.size()]);
+       return chunks;
     }
 }
